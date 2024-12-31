@@ -72,7 +72,7 @@ public class AuthenticationController {
 //        if(userDto==null){
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with this userID not exists");
 //        }
-        return ResponseEntity.ok().body(authService.getUser(userId));
+        return ResponseEntity.ok().body(userDto);
     }
 
     @GetMapping(path = "/userByEmail/{email}")

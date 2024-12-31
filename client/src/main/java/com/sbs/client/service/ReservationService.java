@@ -13,6 +13,8 @@ public interface ReservationService {
 
     List<ReservationDto> getBookingsByUserId(long userId);
 
+    List<ReservationDto> getBookingsByCompanyId(long companyId);
+
     ReservationDto changeBookingStatus(long reservationId, ReservationStatus status);
 
 }

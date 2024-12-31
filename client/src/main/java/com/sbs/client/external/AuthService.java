@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "AUTHENTICATION")
 public interface AuthService {
 
-    @GetMapping(path = "/signup/user/{userId}")
+    @GetMapping(path = "/userById/{userId}")
     UserDto getUser(@PathVariable long userId);
 
     @GetMapping(path = "/userByEmail/{email}")

@@ -59,7 +59,12 @@ public class ReservationController {
         return ResponseEntity.ok().body(reservationService.getBookingsByUserId(userId));
     }
 
-    @PutMapping(path = "/changeStatus/{reservationId}/{status}")
+    @GetMapping(path = "/company-bookings/{companyId}")
+    public ResponseEntity<List<ReservationDto>> getAllBookingsByCompanyId(@PathVariable long companyId) {
+        return ResponseEntity.ok().body(reservationService.getBookingsByCompanyId(companyId));
+    }
+
+    @GetMapping(path = "/changeStatus/{reservationId}/{status}")
     public ResponseEntity<?> changeBookingStatus(@PathVariable long reservationId, @PathVariable ReservationStatus status){
         ReservationDto reservationDto = reservationService.changeBookingStatus(reservationId,status);
         if(reservationDto!=null){

@@ -40,11 +40,12 @@ public class AdController {
     }
 
     @PutMapping("/ad/{adId}")
-    public ResponseEntity<AdDto> updateAd(@PathVariable long adId, @RequestBody AdDto dto) {
+    public ResponseEntity<AdDto> updateAd(@PathVariable long adId, @RequestBody AdDto dto) throws IOException {
 
         AdDto adDto = adService.getAdById(adId);
         if(adDto!=null){
-            return ResponseEntity.ok().body(adDto);
+            AdDto adDto1 = adService.updateAd(adId, dto);
+            return ResponseEntity.ok().body(adDto1);
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

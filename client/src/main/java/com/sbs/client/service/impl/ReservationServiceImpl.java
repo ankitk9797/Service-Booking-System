@@ -48,6 +48,11 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    public List<ReservationDto> getBookingsByCompanyId(long companyId) {
+        return reservationRepository.findAllByCompanyUserId(companyId).stream().map(Reservation::getReservationDto).collect(Collectors.toList());
+    }
+
+    @Override
     public ReservationDto changeBookingStatus(long reservationId, ReservationStatus status) {
         Optional<Reservation> optional = reservationRepository.findById(reservationId);
         if(optional.isPresent()) {
