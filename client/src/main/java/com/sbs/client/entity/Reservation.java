@@ -2,7 +2,6 @@ package com.sbs.client.entity;
 
 import com.sbs.client.dto.ReservationDto;
 import com.sbs.client.enums.ReservationStatus;
-import com.sbs.client.enums.ReviewStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -34,9 +33,6 @@ public class Reservation {
         dto.setId(id);
         dto.setBookDate(bookDate);
         dto.setReservationStatus(reservationStatus);
-        dto.setAdId(adId);
-        dto.setCompanyId(companyUserId);
-        dto.setUserId(clientUserId);
 
         return dto;
     }

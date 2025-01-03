@@ -20,12 +20,6 @@ export class MyBookingsComponent {
   getMyBookings(){
     this.clientService.getMyBookings().subscribe(res =>{
       this.bookedServices = res;
-      this.bookedServices.forEach((ad,index) => {
-        this.companyService.getAdById(ad.adId).subscribe(res =>{
-          console.log(res);
-          this.bookedServices[index].serviceName = res.serviceName;
-        });
-      });
     })
   }
 

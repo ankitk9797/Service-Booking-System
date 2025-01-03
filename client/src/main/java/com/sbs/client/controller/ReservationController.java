@@ -2,13 +2,12 @@ package com.sbs.client.controller;
 
 import com.sbs.client.dto.AdDto;
 import com.sbs.client.dto.ReservationDto;
+import com.sbs.client.dto.ReservationInputDto;
 import com.sbs.client.dto.UserDto;
-import com.sbs.client.entity.Reservation;
 import com.sbs.client.enums.ReservationStatus;
 import com.sbs.client.external.AuthService;
 import com.sbs.client.external.CompanyService;
 import com.sbs.client.service.ReservationService;
-import jakarta.persistence.GeneratedValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,11 +29,11 @@ public class ReservationController {
     private CompanyService companyService;
 
     @PostMapping(path = "/bookService")
-    public ResponseEntity<?> bookService(@RequestBody ReservationDto dto){
+    public ResponseEntity<?> bookService(@RequestBody ReservationInputDto dto){
 
-        UserDto client = authService.getUser(dto.getUserId());
+        UserDto client = authService.getUser(dto.getClientId());
         if(client==null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found with userId:" + dto.getUserId());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client not found with userId:" + dto.getClientId());
         }
         UserDto company = authService.getUser(dto.getCompanyId());
         if(company==null){
@@ -67,7 +66,7 @@ public class ReservationController {
     @GetMapping(path = "/changeStatus/{reservationId}/{status}")
     public ResponseEntity<?> changeBookingStatus(@PathVariable long reservationId, @PathVariable ReservationStatus status){
         ReservationDto reservationDto = reservationService.changeBookingStatus(reservationId,status);
-        if(reservationDto!=null){
+        if(reservationDto !=null){
             return ResponseEntity.ok().body(reservationDto);
         }
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reservation not found");

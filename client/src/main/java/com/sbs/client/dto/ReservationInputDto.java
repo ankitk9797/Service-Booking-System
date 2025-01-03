@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class ReservationDto {
+public class ReservationInputDto {
 
     private long id;
 
@@ -14,9 +14,10 @@ public class ReservationDto {
 
     private ReservationStatus reservationStatus;
 
-    private String clientName;
+    private Long clientId;
 
-    private String companyName;
+    private Long companyId;
 
-    private String serviceName;
+    private Long adId;
+
 }

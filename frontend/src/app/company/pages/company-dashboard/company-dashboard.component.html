@@ -10,7 +10,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let booking of basicTable.data">
-            <td style="font-weight: 600">{{ booking.userName }}</td>
+            <td style="font-weight: 600">{{ booking.clientName }}</td>
             <td style="font-weight: 600">{{ booking.serviceName }}</td>
             <td>{{ booking.bookDate | date : "dd/MM/yyyy" }}</td>
             <td style="font-weight: 600">{{ booking.reservationStatus }}</td>

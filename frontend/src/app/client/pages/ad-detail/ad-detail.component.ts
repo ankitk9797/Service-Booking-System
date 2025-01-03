@@ -40,7 +40,6 @@ export class AdDetailComponent {
         console.log(res);
         this.avatarUrl = 'data:image/jpeg;base64,' + res.returnedImg;
         this.ad = res;
-        // this.reviews = res.reviewDTOList;
       })
     }
 

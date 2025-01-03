@@ -21,14 +21,7 @@ export class CompanyDashboardComponent {
 
   getAllAdBookings(){
     this.companyService.getAllAdBookings().subscribe(res =>{
-      console.log(res);
       this.bookings = res;
-      this.bookings.forEach((ad,index) => {
-        this.companyService.getAdById(ad.adId).subscribe(res =>{
-          console.log(res);
-          this.bookings[index].serviceName = res.serviceName;
-        });
-      });
     })
   }
 

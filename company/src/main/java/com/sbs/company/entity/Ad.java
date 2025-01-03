@@ -2,7 +2,6 @@ package com.sbs.company.entity;
 
 import com.sbs.company.dto.AdDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.IOException;
