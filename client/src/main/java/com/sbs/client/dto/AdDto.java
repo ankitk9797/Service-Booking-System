@@ -1,5 +1,7 @@
 package com.sbs.client.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class AdDto {
 
     private long id;
@@ -10,8 +12,24 @@ public class AdDto {
 
     private Double price;
 
-//    private MultipartFile img;
-//    private byte[] returnedImg;
+    private MultipartFile img;
+    private byte[] returnedImg;
+
+    public MultipartFile getImg() {
+        return img;
+    }
+
+    public void setImg(MultipartFile img) {
+        this.img = img;
+    }
+
+    public byte[] getReturnedImg() {
+        return returnedImg;
+    }
+
+    public void setReturnedImg(byte[] returnedImg) {
+        this.returnedImg = returnedImg;
+    }
 
     private Long userId;
 

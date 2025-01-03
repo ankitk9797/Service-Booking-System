@@ -19,7 +19,6 @@ public class Reservation {
 
     private ReservationStatus reservationStatus;
 
-    private ReviewStatus reviewStatus;
 
     private Date bookDate;
 
@@ -43,14 +42,6 @@ public class Reservation {
 
     public void setReservationStatus(ReservationStatus reservationStatus) {
         this.reservationStatus = reservationStatus;
-    }
-
-    public ReviewStatus getReviewStatus() {
-        return reviewStatus;
-    }
-
-    public void setReviewStatus(ReviewStatus reviewStatus) {
-        this.reviewStatus = reviewStatus;
     }
 
     public Date getBookDate() {
@@ -91,7 +82,6 @@ public class Reservation {
         dto.setId(id);
         dto.setBookDate(bookDate);
         dto.setReservationStatus(reservationStatus);
-        dto.setReviewStatus(reviewStatus);
 
         dto.setAdId(adId);
         dto.setCompanyId(companyUserId);

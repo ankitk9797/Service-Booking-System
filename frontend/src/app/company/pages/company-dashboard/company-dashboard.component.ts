@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import {AuthService} from "../../../basic/services/auth/auth.service";
 
 @Component({
   selector: 'app-company-dashboard',
@@ -12,7 +13,7 @@ export class CompanyDashboardComponent {
   bookings:any;
 
   constructor(private companyService: CompanyService,
-    private notification: NzNotificationService){}
+    private notification: NzNotificationService, private authService: AuthService,){}
 
   ngOnInit(){
     this.getAllAdBookings();
@@ -22,6 +23,12 @@ export class CompanyDashboardComponent {
     this.companyService.getAllAdBookings().subscribe(res =>{
       console.log(res);
       this.bookings = res;
+      this.bookings.forEach((ad,index) => {
+        this.companyService.getAdById(ad.adId).subscribe(res =>{
+          console.log(res);
+          this.bookings[index].serviceName = res.serviceName;
+        });
+      });
     })
   }
 

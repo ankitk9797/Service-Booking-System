@@ -16,7 +16,6 @@ public class ReservationDto {
 
     private ReservationStatus reservationStatus;
 
-    private ReviewStatus reviewStatus;
 
     private Long userId;
 
@@ -48,14 +47,6 @@ public class ReservationDto {
 
     public void setReservationStatus(ReservationStatus reservationStatus) {
         this.reservationStatus = reservationStatus;
-    }
-
-    public ReviewStatus getReviewStatus() {
-        return reviewStatus;
-    }
-
-    public void setReviewStatus(ReviewStatus reviewStatus) {
-        this.reviewStatus = reviewStatus;
     }
 
     public Long getUserId() {

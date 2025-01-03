@@ -26,7 +26,7 @@ export class AdDetailComponent {
     private router: Router,
     private fb: FormBuilder){}
 
-  
+
     ngOnInit(){
       this.validateForm = this.fb.group({
         bookDate: [null, [Validators.required]]
@@ -38,9 +38,9 @@ export class AdDetailComponent {
     getAdDetailsByAdId(){
       this.clientService.getAdDetailsByAdId(this.adId).subscribe(res=>{
         console.log(res);
-        this.avatarUrl = 'data:image/jpeg;base64,' + res.adDTO.returnedImg;
-        this.ad = res.adDTO;
-        this.reviews = res.reviewDTOList;
+        this.avatarUrl = 'data:image/jpeg;base64,' + res.returnedImg;
+        this.ad = res;
+        // this.reviews = res.reviewDTOList;
       })
     }
 
@@ -48,7 +48,9 @@ export class AdDetailComponent {
       const bookServiceDTO = {
         bookDate : this.validateForm.get(['bookDate']).value,
         adId : this.adId,
-        userId: UserStoargeService.getUserId()
+        userId: UserStoargeService.getUserId(),
+        reservationStatus: 'PENDING',
+        companyId: this.ad.userId,
       }
 
       this.clientService.bookService(bookServiceDTO).subscribe(res =>{

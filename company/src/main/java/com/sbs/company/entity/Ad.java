@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Entity
 @Table(name = "ads")
 public class Ad {
@@ -21,17 +26,15 @@ public class Ad {
 
     private long userId;
 
-//    @Lob
-//    @Column(columnDefinition = "longblob")
-//    private byte[] img;
+    private String imgPath;
 
-//    public byte[] getImg() {
-//        return img;
-//    }
-//
-//    public void setImg(byte[] img) {
-//        this.img = img;
-//    }
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
 
     public String getServiceName() {
         return serviceName;
@@ -79,9 +82,15 @@ public class Ad {
         adDTO.setId(id);
         adDTO.setServiceName(serviceName);
         adDTO.setDescription(description);
-//        adDTO.setReturnedImg(img);
         adDTO.setPrice(price);
         adDTO.setUserId(userId);
+
+        Path path = Paths.get(imgPath);
+        try {
+            adDTO.setReturnedImg(Files.readAllBytes(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         return adDTO;
     }

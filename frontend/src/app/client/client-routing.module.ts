@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'dashboard', component: ClientDashboardComponent },
   { path: 'bookings', component: MyBookingsComponent },
   { path: 'ad/:adId', component: AdDetailComponent },
-  { path: 'review/:id', component: ReviewComponent },
 ];
 
 @NgModule({

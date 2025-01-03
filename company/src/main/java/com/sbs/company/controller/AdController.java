@@ -22,7 +22,7 @@ public class AdController {
     private AuthService authService;
 
     @PostMapping("/create-ad")
-    public ResponseEntity<AdDto> postAd(@RequestBody AdDto dto) throws IOException {
+    public ResponseEntity<AdDto> postAd(@ModelAttribute AdDto dto) throws IOException {
 
        AdDto adDto = adService.postAd(dto);
        return ResponseEntity.ok().body(adDto);
@@ -40,7 +40,7 @@ public class AdController {
     }
 
     @PutMapping("/ad/{adId}")
-    public ResponseEntity<AdDto> updateAd(@PathVariable long adId, @RequestBody AdDto dto) throws IOException {
+    public ResponseEntity<AdDto> updateAd(@PathVariable long adId, @ModelAttribute AdDto dto) throws IOException {
 
         AdDto adDto = adService.getAdById(adId);
         if(adDto!=null){

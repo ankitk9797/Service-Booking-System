@@ -13,8 +13,8 @@ public class AdDto {
 
     private Double price;
 
-//    private MultipartFile img;
-//    private byte[] returnedImg;
+    private MultipartFile img;
+    private byte[] returnedImg;
 
     private Long userId;
 
@@ -50,21 +50,21 @@ public class AdDto {
         this.userId = userId;
     }
 
-//    public MultipartFile getImg() {
-//        return img;
-//    }
-//
-//    public void setImg(MultipartFile img) {
-//        this.img = img;
-//    }
-//
-//    public byte[] getReturnedImg() {
-//        return returnedImg;
-//    }
-//
-//    public void setReturnedImg(byte[] returnedImg) {
-//        this.returnedImg = returnedImg;
-//    }
+    public MultipartFile getImg() {
+        return img;
+    }
+
+    public void setImg(MultipartFile img) {
+        this.img = img;
+    }
+
+    public byte[] getReturnedImg() {
+        return returnedImg;
+    }
+
+    public void setReturnedImg(byte[] returnedImg) {
+        this.returnedImg = returnedImg;
+    }
 
     public long getId() {
         return id;

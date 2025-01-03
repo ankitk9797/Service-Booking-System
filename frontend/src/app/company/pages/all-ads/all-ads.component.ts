@@ -21,6 +21,7 @@ export class AllAdsComponent {
   getAllAdsByUserId(){
     this.companyService.getAllAdsByUserId().subscribe(res =>{
       this.ads = res;
+      console.log(this.ads);
     })
   }
 

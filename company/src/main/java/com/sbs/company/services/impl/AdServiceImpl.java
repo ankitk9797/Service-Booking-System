@@ -8,7 +8,12 @@ import com.sbs.company.services.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,14 +24,30 @@ public class AdServiceImpl implements AdService {
     @Autowired
     private AdRepository adRepository;
 
+    private String uploadDir = "/path/to/save/images";
+
     @Override
-    public AdDto postAd(AdDto dto) {
-        Ad ad = new Ad();
+    public AdDto postAd(AdDto dto) throws IOException {
+        String fileName = dto.getImg().getOriginalFilename();
+        String filePath = uploadDir + File.separator + fileName;
+
+        // Check if the directory exists, and create it if it doesn't
+        File directory = new File(uploadDir);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        // Save the file to the file system
+        Path path = Paths.get(filePath);
+        Files.write(path, dto.getImg().getBytes());
+
+        // Save file metadata in the database
+        Ad ad=new Ad();
         ad.setServiceName(dto.getServiceName());
         ad.setDescription(dto.getDescription());
-//        ad.setImg(dto.getImg().getBytes());
         ad.setPrice(dto.getPrice());
         ad.setUserId(dto.getUserId());
+        ad.setImgPath(filePath);
 
         adRepository.save(ad);
 
@@ -36,25 +57,46 @@ public class AdServiceImpl implements AdService {
     @Override
     public AdDto getAdById(long adId) {
         Optional<Ad> optional = adRepository.findById(adId);
-        if(optional.isPresent()){
-            return optional.get().getAdDto();
-        }
-        return null;
+        return optional.map(Ad::getAdDto).orElse(null);
     }
 
     @Override
-    public AdDto updateAd(long adId, AdDto dto) {
-        AdDto adDto = getAdById(adId);
-        if(adDto!=null) {
-            Ad ad = new Ad();
-            ad.setId(adDto.getId());
-            ad.setServiceName(dto.getServiceName());
-            ad.setPrice(dto.getPrice());
-//            ad.setImg(dto.getImg().getBytes());
-            ad.setDescription(dto.getDescription());
-            ad.setUserId(dto.getUserId());
+    public AdDto updateAd(long adId, AdDto dto) throws IOException {
+        Optional<Ad> optional = adRepository.findById(adId);
+        if(optional.isPresent()) {
+            Ad ad = optional.get();
+            if (dto.getImg()!=null) {
+            String fileName = dto.getImg().getOriginalFilename();
+            String filePath = uploadDir + File.separator + fileName;
+
+            // Check if the directory exists, and create it if it doesn't
+            File directory = new File(uploadDir);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            // Save the file to the file system
+            Path path = Paths.get(filePath);
+            Files.write(path, dto.getImg().getBytes());
+                ad.setImgPath(filePath);
+            }
+
+            if(dto.getServiceName()!=null) {
+                ad.setServiceName(dto.getServiceName());
+            }
+            if(dto.getDescription()!=null) {
+                ad.setDescription(dto.getDescription());
+            }
+            if(dto.getPrice()!=null) {
+                ad.setPrice(dto.getPrice());
+            }
+            if(dto.getUserId()!=null) {
+                ad.setUserId(dto.getUserId());
+            }
+
 
             adRepository.save(ad);
+
 
             return ad.getAdDto();
         }
@@ -63,8 +105,22 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public boolean deleteAd(long adId) {
-        AdDto adDto = getAdById(adId);
-        if(adDto !=null) {
+        Optional<Ad> optional = adRepository.findById(adId);
+        if(optional.isPresent()) {
+            Ad ad = optional.get();
+            try {
+                Path path = Paths.get(ad.getImgPath());
+
+                // Check if the file exists before attempting to delete
+                if (Files.exists(path)) {
+                    Files.delete(path);
+                    System.out.println("File deleted successfully.");
+                } else {
+                    System.out.println("File does not exist.");
+                }
+            } catch (IOException e) {
+                System.err.println("Error deleting file: " + e.getMessage());
+            }
           adRepository.deleteById(adId);
           return true;
         }

@@ -48,7 +48,7 @@ export class CompanyService {
 
   getAllAdBookings(): Observable<any>{
     const companyId = UserStoargeService.getUserId();
-    return this.http.get(BASIC_URL2 + `/bookings/${companyId}`, {
+    return this.http.get(BASIC_URL2 + `/company-bookings/${companyId}`, {
       headers : this.createAuthorizationHeader()
     })
   }

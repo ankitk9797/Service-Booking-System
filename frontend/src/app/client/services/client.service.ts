@@ -32,8 +32,8 @@ export class ClientService {
   }
 
   bookService(bookDTO:any): Observable<any>{
-
-    return this.http.post(BASIC_URL2 + `/book-service`, bookDTO , {
+      console.log(bookDTO);
+    return this.http.post(BASIC_URL2 + `/bookService`, bookDTO , {
       headers : this.createAuthorizationHeader()
     })
   }

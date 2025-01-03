@@ -46,22 +46,22 @@ export class CreateAdComponent {
 
     postAd(){
       const userId = UserStoargeService.getUserId();
-      const data: any = {
-        'serviceName': this.validateForm.get('serviceName').value,
-        'description': this.validateForm.get('description').value,
-        'price': this.validateForm.get('price').value,
-        'userId': userId,
-      };
+      // const data: any = {
+      //   'serviceName': this.validateForm.get('serviceName').value,
+      //   'description': this.validateForm.get('description').value,
+      //   'price': this.validateForm.get('price').value,
+      //   'userId': userId,
+      // };
 
-      // formData.append('img', this.selectedFile);
-      // formData.append('serviceName', this.validateForm.get('serviceName').value);
-      // formData.append('description', this.validateForm.get('description').value);
-      // formData.append('price', this.validateForm.get('price').value);
-      // formData.append('userId', userId);
-      console.log('test');
-      console.log(data);
+      let formData: FormData = new FormData();
 
-      this.companyService.postAd(data).subscribe(res =>{
+      formData.append('img', this.selectedFile);
+      formData.append('serviceName', this.validateForm.get('serviceName').value);
+      formData.append('description', this.validateForm.get('description').value);
+      formData.append('price', this.validateForm.get('price').value);
+      formData.append('userId', userId);
+
+      this.companyService.postAd(formData).subscribe(res =>{
         this.notification
         .success(
           'SUCCESS',

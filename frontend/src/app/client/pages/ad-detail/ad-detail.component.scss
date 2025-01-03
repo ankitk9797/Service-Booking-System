@@ -11,7 +11,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        
+
 
         .ad-detail {
             width: 70%;
@@ -71,30 +71,6 @@
                         .book-button {
                             margin-top: 10px;
                         }
-                    }
-                }
-            }
-        }
-    }
-
-    .reviews-section {
-        width: 100%;
-
-        .review-card {
-            margin-top: 20px;
-            width: 89%;
-            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-           
-
-            p {
-                font-size: 14px;
-                margin-bottom: 5px;
-
-                strong {
-                    font-weight: bold;
-
-                    .review-rating {
-                        display: block;
                     }
                 }
             }
