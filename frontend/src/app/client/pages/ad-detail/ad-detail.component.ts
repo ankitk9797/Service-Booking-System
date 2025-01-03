@@ -15,6 +15,12 @@ export class AdDetailComponent {
   adId= this.activatedroute.snapshot.params['adId'];
   avatarUrl:any;
   ad:any;
+  defaultDate = new Date();
+  disableOldDates = (current: Date): boolean => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set time to 00:00:00 for accurate comparison
+    return current && current.getTime() < today.getTime(); // Allow dates from today onwards
+  };
 
   reviews:any;
 

@@ -46,7 +46,7 @@ export class SignupCompanyComponent {
           { nzDuration: 5000 }
         )
       });
-      
+
     }
 
 }

@@ -31,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(dto.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
         user.setLastName(dto.getLastname());
-        user.setMobileNo(dto.getMobileNo());
+        user.setMobileNo(dto.getPhone());
         user.setRole(UserRole.CLIENT);
         userRepository.save(user);
         return user.getDto();
@@ -49,7 +49,7 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(dto.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
         user.setLastName(dto.getLastname());
-        user.setMobileNo(dto.getMobileNo());
+        user.setMobileNo(dto.getPhone());
         user.setRole(UserRole.COMPANY);
         userRepository.save(user);
         return user.getDto();

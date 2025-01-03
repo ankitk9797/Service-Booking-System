@@ -15,13 +15,13 @@
             <td>{{ booking.bookDate | date : "dd/MM/yyyy" }}</td>
             <td style="font-weight: 600">{{ booking.reservationStatus }}</td>
             <td>
-                <span *ngIf="booking.reservationStatus === 'PENDING'">
+                <span>
                     <button style="margin-left: 10px" nzSize="small" nz-button nzType="primary"
-                    (click)="changeBookingStatus(booking.id, 'APPROVED')">
+                    (click)="changeBookingStatus(booking.id, 'APPROVED')" [disabled]="booking.reservationStatus != 'PENDING'">
                         Approve
                       </button>
                       <button style="margin-left: 10px" nzSize="small" nz-button nzType="primary"  nzDanger
-                      (click)="changeBookingStatus(booking.id, 'REJECTED')">
+                      (click)="changeBookingStatus(booking.id, 'REJECTED')" [disabled]="booking.reservationStatus != 'PENDING'">
                         Reject
                       </button>
                 </span>

@@ -13,5 +13,5 @@ public class SignUpRequestDto {
 
     private String lastname;
 
-    private String mobileNo;
+    private String phone;
 }
