@@ -24,6 +24,6 @@ export class AppComponent {
 
   logout(){
     UserStoargeService.signOut();
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('');
   }
 }

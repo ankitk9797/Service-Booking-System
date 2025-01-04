@@ -1,14 +1,13 @@
 <div *ngIf="!isClientLoggedIn && !isCompanyLoggedIn">
-<nz-header class="main-header" nz-row nzType="flex" style="background-color: #bb2929">
+<nz-header class="main-header" nz-row nzType="flex" style="background-color: cornflowerblue">
 
   <div>
-    <h2 style="color: white; padding-left: 10px;">Service Booking System</h2>
+    <h2 style="color: white; padding-left: 20px;">Service Booking System</h2>
   </div>
 
-  <div class="nav-links">
+  <div class="nav-links" style="margin-right: 50px">
     <a nz-button nzType="link" routerLink="/home" routerLinkActive="active">Home</a>
     <a nz-button nzType="link" routerLink="/register" routerLinkActive="active">Register</a>
-    <a nz-button nzType="link" routerLink="/login" routerLinkActive="active">Login</a>
     </div>
 
   </nz-header>
@@ -17,7 +16,7 @@
 <div *ngIf="isClientLoggedIn">
   <nz-header class="main-header" nz-row nzType="flex" style="background-color: #bb2929">
     <div>
-     
+
       <h2 style="color: white; padding-left: 10px;">Service Booking System</h2>
   </div>
   <div class="nav-links">
@@ -45,7 +44,7 @@
 <div *ngIf="isCompanyLoggedIn">
   <nz-header class="main-header" nz-row nzType="flex" style="background-color: #bb2929">
     <div>
-    
+
         <h2 style="color: white; padding-left: 10px;">Service Booking System</h2>
     </div>
     <div class="nav-links">

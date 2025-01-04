@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'register_company', component: SignupCompanyComponent},
   { path: 'login', component: LoginComponent},
   { path: '', component: LoginComponent},
+  { path: 'home', component: LoginComponent},
   { path: 'register', component: SingupComponent},
   { path: 'company', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule) },
   { path: 'client', loadChildren: () => import('./client/client.module').then(m => m.ClientModule) }];
